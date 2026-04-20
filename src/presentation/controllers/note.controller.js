@@ -23,4 +23,24 @@ export default class NoteController {
             res.status(404).json({ error: error.message });
         }
     }
+
+    deleteNote = async (req, res) => {
+        const userId = 'user_123';
+        try {
+            const notes = await this.noteService.deleteNote(userId);
+            res.status(200).json(notes); // 200 OK
+        } catch (error) {
+            res.status(404).json({ error: error.message });
+        }
+    }
+
+    updateNote = async (req, res) => {
+        const userId = 'user_123';
+        try {
+            const notes = await this.noteService.updateNote(userId);
+            res.status(200).json(notes); // 200 OK
+        } catch (error) {
+            res.status(404).json({ error: error.message });
+        }   
+    }
 }

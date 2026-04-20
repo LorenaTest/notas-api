@@ -15,4 +15,16 @@ export default class NoteMySQLRepository {
     async findByUserId(userId) {
         return await NoteModel.findAll({ where: { userId } });
     }
+
+    async delete(userId) {
+        return await NoteModel.destroy({ where: { userId } });
+    }   
+    
+    async update(userId, data) {
+        const [updated] = await NoteModel.update(data, { where: { userId } });      
+        if (updated) {
+            return await NoteModel.findOne({ where: { userId } });
+        }   
+        throw new Error("Note not found");
+    }   
 }
