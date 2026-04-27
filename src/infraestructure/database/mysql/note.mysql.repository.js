@@ -8,7 +8,7 @@ export default class NoteMySQLRepository {
             imageUrl: noteEntity.imageUrl,
             isPrivate: noteEntity.isPrivate,
             password: noteEntity.password,
-            userId: noteEntity.userid
+            userId: noteEntity.userId
         });
         return note.toJSON();
     }
@@ -16,15 +16,22 @@ export default class NoteMySQLRepository {
         return await NoteModel.findAll({ where: { userId } });
     }
 
-    async delete(userId) {
-        return await NoteModel.destroy({ where: { userId } });
+    async findById(id) {
+        const note = await NoteModel.findByPk(id);
+        return note ? note.toJSON() : null;
+    }
+
+    async delete(id) {
+           const note = await NoteModel.findByPk(id);
+        if (!note) return null;
+        await note.destroy();
+        return true;
     }   
     
     async update(userId, data) {
-        const [updated] = await NoteModel.update(data, { where: { userId } });      
-        if (updated) {
-            return await NoteModel.findOne({ where: { userId } });
-        }   
-        throw new Error("Note not found");
+        const note = await NoteModel.findByPk(userId);
+        if (!note) return null;
+        await note.update(data);
+        return note.toJSON();
     }   
 }

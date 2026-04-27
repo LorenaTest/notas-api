@@ -6,6 +6,6 @@ export default class NoteEntity {
         this.imageUrl = imageUrl || null;
         this.isPrivate = isPrivate || false;
         this.password = password || null;
-        this.userid = userid;
+        this.userid = userId;
     }
 }
