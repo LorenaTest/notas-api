@@ -22,14 +22,14 @@ export default class NoteMySQLRepository {
     }
 
     async delete(id) {
-           const note = await NoteModel.findByPk(id);
+        const note = await NoteModel.findByPk(id);
         if (!note) return null;
         await note.destroy();
         return true;
     }   
     
-    async update(userId, data) {
-        const note = await NoteModel.findByPk(userId);
+    async update(id, data) {
+        const note = await NoteModel.findByPk(id);
         if (!note) return null;
         await note.update(data);
         return note.toJSON();
