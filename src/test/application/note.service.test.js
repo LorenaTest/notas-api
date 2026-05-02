@@ -33,7 +33,7 @@ describe('NoteService - Pruebas Unitarias', () => {
         const mockNotes = [{ title: 'Nota 1' }, { title: 'Nota 2' }];
         mockNoteRepository.findByUserId.mockResolvedValue(mockNotes);
 
-        const result = await noteService.getNotesByUser('user_123');
+        const result = await noteService.getNotesByUserId('user_123');
 
         expect(mockNoteRepository.findByUserId).toHaveBeenCalledWith('user_123');
         expect(result.length).toBe(2);

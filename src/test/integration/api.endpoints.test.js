@@ -1,7 +1,9 @@
 import request from 'supertest';
-import app from '../../src/app.js';
+import app from '../../app.js';
 import mongoose from 'mongoose';
-import JwtService from '../../src/infraestructure/security/jwt.service.js';
+import JwtService from '../../infraestructure/security/jwt.service.js';
+
+process.env.JWT_SECRET = 'testsecret';
 
 describe('Integración - API Completa', () => {
     
