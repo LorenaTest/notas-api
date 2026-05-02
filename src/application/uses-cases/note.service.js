@@ -27,7 +27,8 @@ export default class NoteService {
         }   if (note.userId !== userId) {     
             throw new Error("Unauthorized");
         }
-        return await this.noteRepository.delete(userId);
+        await this.noteRepository.delete(userId);
+        return { message: "Note deleted successfully" };
     }  
 
     async updateNote(userId, data) {
