@@ -7,5 +7,6 @@ export default class NoteEntity {
         this.isPrivate = isPrivate || false;
         this.password = password || null;
         this.userid = userId;
+        this.categoryId = this.categoryId || null;
     }
 }

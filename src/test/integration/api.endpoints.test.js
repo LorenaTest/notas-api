@@ -2,6 +2,7 @@ import request from 'supertest';
 import app from '../../app.js';
 import mongoose from 'mongoose';
 import JwtService from '../../infraestructure/security/jwt.service.js';
+import sequelize from '../../infraestructure/database/mysql/connection.js';
 
 process.env.JWT_SECRET = 'testsecret';
 
@@ -10,6 +11,7 @@ describe('Integración - API Completa', () => {
     // Si estuviéramos usando una base de datos real de pruebas, aquí nos desconectaríamos al finalizar
     afterAll(async () => {
         await mongoose.disconnect();
+         await sequelize.close(); 
     });
 
     describe('1. Healthcheck Endpoint', () => {
